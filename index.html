@@ -52,11 +52,11 @@
       </section>
 
       <section id="vocabulary" class="view">
-        <header class="page-head compact"><p class="eyebrow">VOCABULARY NOTEBOOK</p><h1>词汇，不只背“认识”。</h1><p class="intro">12 天基础高频词路径，每天 10 个。点卡片查看释义，再告诉自己：这个词现在熟不熟？</p></header>
-        <div class="study-day"><button class="text-btn" id="previous-day">← 前一天</button><strong id="day-label">第 1 天 · 10 个词</strong><button class="text-btn" id="next-day">后一天 →</button></div>
+        <header class="page-head compact"><p class="eyebrow">VOCABULARY NOTEBOOK</p><h1>词汇，不只背“认识”。</h1><p class="intro">12 天高频词路径，每天 30 个：10 个新词 + 20 个滚动复习词。点卡片查看释义，再告诉自己：这个词现在熟不熟？</p></header>
+        <div class="study-day"><button class="text-btn" id="previous-day">← 前一天</button><strong id="day-label">第 1 天 · 30 个词</strong><button class="text-btn" id="next-day">后一天 →</button></div>
         <div class="vocab-layout">
           <section class="word-card" id="word-card" tabindex="0" role="button" aria-label="点击翻开单词卡">
-            <p class="card-label">TODAY'S WORD <span id="word-index">1 / 10</span></p>
+            <p class="card-label">TODAY'S WORD <span id="word-index">1 / 30</span></p>
             <div class="word-front"><span id="word-tag">verb</span><h2 id="word-en">achieve</h2><p id="word-phonetic">/əˈtʃiːv/</p><small>点击卡片查看释义</small></div>
             <div class="word-back"><h3 id="word-zh">实现；达到</h3><p id="word-example">Small steps can achieve big goals.</p><button class="speak-link" id="speak-word">朗读这个词</button></div>
           </section>
@@ -72,16 +72,13 @@
       </section>
 
       <section id="reading" class="view">
-        <header class="page-head compact"><p class="eyebrow">READING LAB</p><h1>先读懂一句，再读懂一段。</h1><p class="intro">这篇短文练习的是“抓主旨”和“找细节”。不需要逐字翻译。</p></header>
-        <div class="reading-grid">
-          <article class="paper-card passage"><div id="reading-content"></div><div class="reading-tools"><button class="text-btn" id="mark-reading">☆ 标记为已完成</button><button class="text-btn" id="speak-passage">朗读文章</button><button class="text-btn" id="toggle-reading-translation">显示逐词对照</button></div><div id="reading-translation" class="translation-panel" hidden></div></article>
-          <section class="paper-card questions"><p class="eyebrow">CHECK YOUR UNDERSTANDING</p><h2>两道小题</h2><form id="reading-form"><div id="reading-questions"></div><button class="primary-btn" type="submit">检查答案</button><p id="reading-result" class="feedback" aria-live="polite"></p></form></section>
-        </div>
+        <header class="page-head compact"><p class="eyebrow">READING LAB</p><h1>先读懂一句，再读懂一段。</h1><p class="intro">每天 3 篇中等篇幅短文，每篇有一道主旨理解题。先自己读，再按需要打开中文和逐词对照。</p></header>
+        <form id="reading-form"><div id="reading-list" class="reading-list"></div><button class="primary-btn" type="submit">检查今天 3 道阅读题</button><p id="reading-result" class="feedback" aria-live="polite"></p></form>
       </section>
 
       <section id="listening" class="view">
-        <header class="page-head compact"><p class="eyebrow">LISTENING CORNER</p><h1>先听清，再听懂。</h1><p class="intro">浏览器会朗读下面的句子。建议先 0.8 倍听两遍，再遮住文字听一遍。</p></header>
-        <section class="listening-paper paper-card"><div class="tape"><span id="listening-number">LISTENING 01</span><span id="listening-topic">ABOUT STUDY HABITS</span></div><p id="listening-text" class="listening-text"></p><div class="listen-controls"><button class="round-play" id="play-listening" aria-label="播放朗读">▶</button><label>语速 <select id="speech-rate"><option value="0.8">0.8× 慢速</option><option value="1" selected>1.0× 正常</option><option value="1.2">1.2× 稍快</option></select></label><button class="text-btn" id="toggle-transcript">隐藏文字</button><button class="text-btn" id="toggle-listening-translation">显示逐词对照</button></div><div id="listening-translation" class="translation-panel listening-translation" hidden></div><div class="listen-task"><label><input type="checkbox" id="listening-done" /> 我已完成本次听力练习</label><p class="muted">提示：如果没有声音，请检查浏览器音量，或换一个浏览器试试。</p></div></section>
+        <header class="page-head compact"><p class="eyebrow">LISTENING CORNER</p><h1>先听清，再听懂。</h1><p class="intro">每天 10 道短精听。每道先用 0.8 倍听两遍，再看文字、打开对照并回答问题。</p></header>
+        <label class="speed-setting">统一语速 <select id="speech-rate"><option value="0.8">0.8× 慢速</option><option value="1" selected>1.0× 正常</option><option value="1.2">1.2× 稍快</option></select></label><div id="listening-list" class="listening-list"></div><button id="check-listening" class="primary-btn" type="button">检查今天 10 道短精听</button><p id="listening-result" class="feedback" aria-live="polite"></p>
       </section>
 
       <section id="profile" class="view">
@@ -92,6 +89,7 @@
           <section class="paper-card"><p class="eyebrow">DATA BACKUP</p><h2>备份与恢复</h2><p class="muted">导出会下载一份 JSON 文件；导入会恢复其中的学习数据。</p><div class="backup-actions"><button class="primary-btn" id="export-data">导出学习数据</button><label class="secondary-btn">导入学习数据<input id="import-data" type="file" accept="application/json,.json" hidden /></label></div><p id="backup-feedback" class="feedback" aria-live="polite"></p></section>
         </div>
       </section>
+      <div hidden aria-hidden="true"><div id="reading-content"></div><div id="reading-translation"></div><div id="reading-questions"></div><button id="mark-reading"></button><button id="speak-passage"></button><button id="toggle-reading-translation"></button><span id="listening-number"></span><span id="listening-topic"></span><p id="listening-text"></p><div id="listening-translation"></div><button id="play-listening"></button><button id="toggle-transcript"></button><button id="toggle-listening-translation"></button><input id="listening-done" type="checkbox"></div>
     </main>
     <nav class="mobile-nav" aria-label="移动端主导航"><button class="active" data-view="home">首页</button><button data-view="vocabulary">词汇</button><button data-view="reading">阅读</button><button data-view="listening">听力</button><button data-view="profile">我的</button></nav>
     <script src="app.js"></script>
